@@ -1,14 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function AdminProducts() {
-  const [products, setProducts] = useState([
-    {
-      id: 1,
-      name: "Laptop",
-      price: 50000,
-      category: "Electronics",
-    },
-  ]);
+  const [products, setProducts] = useState(() => {
+    const savedProducts =
+      localStorage.getItem("products");
+
+    return savedProducts
+      ? JSON.parse(savedProducts)
+      : [
+          {
+            id: 1,
+            name: "Laptop",
+            price: 50000,
+            category: "Electronics",
+          },
+        ];
+  });
 
   const [form, setForm] = useState({
     name: "",
@@ -19,23 +26,34 @@ export default function AdminProducts() {
   const [editId, setEditId] =
     useState(null);
 
+  useEffect(() => {
+    localStorage.setItem(
+      "products",
+      JSON.stringify(products)
+    );
+  }, [products]);
+
   const handleSubmit = () => {
     if (
       !form.name ||
       !form.price ||
       !form.category
-    )
+    ) {
+      alert(
+        "Please fill all fields"
+      );
       return;
+    }
 
     if (editId) {
       setProducts(
-        products.map((p) =>
-          p.id === editId
+        products.map((product) =>
+          product.id === editId
             ? {
-                ...p,
+                ...product,
                 ...form,
               }
-            : p
+            : product
         )
       );
 
@@ -57,24 +75,36 @@ export default function AdminProducts() {
     });
   };
 
-  const handleEdit = (product) => {
+  const handleEdit = (
+    product
+  ) => {
     setEditId(product.id);
-    setForm(product);
+
+    setForm({
+      name: product.name,
+      price: product.price,
+      category:
+        product.category,
+    });
   };
 
   const handleDelete = (id) => {
     setProducts(
       products.filter(
-        (p) => p.id !== id
+        (product) =>
+          product.id !== id
       )
     );
   };
 
   return (
     <div className="container">
-      <h1>Product Management</h1>
+      <h1>
+        Product Management
+      </h1>
 
       <input
+        type="text"
         placeholder="Product Name"
         value={form.name}
         onChange={(e) =>
@@ -86,6 +116,7 @@ export default function AdminProducts() {
       />
 
       <input
+        type="number"
         placeholder="Price"
         value={form.price}
         onChange={(e) =>
@@ -97,17 +128,21 @@ export default function AdminProducts() {
       />
 
       <input
+        type="text"
         placeholder="Category"
         value={form.category}
         onChange={(e) =>
           setForm({
             ...form,
-            category: e.target.value,
+            category:
+              e.target.value,
           })
         }
       />
 
-      <button onClick={handleSubmit}>
+      <button
+        onClick={handleSubmit}
+      >
         {editId
           ? "Update Product"
           : "Add Product"}
@@ -124,37 +159,49 @@ export default function AdminProducts() {
         </thead>
 
         <tbody>
-          {products.map((product) => (
-            <tr key={product.id}>
-              <td>{product.name}</td>
-              <td>
-                ₹ {product.price}
-              </td>
-              <td>
-                {product.category}
-              </td>
+          {products.map(
+            (product) => (
+              <tr
+                key={product.id}
+              >
+                <td>
+                  {product.name}
+                </td>
 
-              <td>
-                <button
-                  onClick={() =>
-                    handleEdit(product)
-                  }
-                >
-                  Edit
-                </button>
+                <td>
+                  ₹ {product.price}
+                </td>
 
-                <button
-                  onClick={() =>
-                    handleDelete(
-                      product.id
-                    )
+                <td>
+                  {
+                    product.category
                   }
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
+                </td>
+
+                <td>
+                  <button
+                    onClick={() =>
+                      handleEdit(
+                        product
+                      )
+                    }
+                  >
+                    Edit
+                  </button>
+
+                  <button
+                    onClick={() =>
+                      handleDelete(
+                        product.id
+                      )
+                    }
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            )
+          )}
         </tbody>
       </table>
     </div>
