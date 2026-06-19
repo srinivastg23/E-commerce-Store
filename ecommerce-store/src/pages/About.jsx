@@ -3,98 +3,81 @@ export default function About() {
     <div className="container">
       <h1>About Us</h1>
 
-      <div className="card">
-        <p>
-          Welcome to E-Commerce Store,
-          your one-stop destination for
-          quality products at affordable
-          prices. Our platform is built
-          using modern web technologies
-          to provide a smooth, secure,
-          and enjoyable shopping
-          experience.
-        </p>
+      <div className="card about-card">
 
-        <br />
+        <div className="about-section">
+          <p>
+            Welcome to E-Commerce Store, your trusted destination for
+            quality products at affordable prices. Our platform is designed
+            to provide a seamless and secure shopping experience with a
+            modern, user-friendly interface.
+          </p>
+        </div>
 
-        <h2>Our Mission</h2>
+        <div className="about-section">
+          <h2>Our Mission</h2>
 
-        <p>
-          To make online shopping
-          simple, reliable, and
-          accessible for everyone by
-          offering quality products,
-          secure transactions, and
-          excellent customer service.
-        </p>
+          <p>
+            To make online shopping simple, reliable, and accessible for
+            everyone by offering quality products, secure transactions,
+            and excellent customer service.
+          </p>
+        </div>
 
-        <br />
+        <div className="about-section">
+          <h2>Our Vision</h2>
 
-        <h2>Our Vision</h2>
+          <p>
+            To become a leading e-commerce platform that connects customers
+            with the products they love while delivering convenience,
+            value, and satisfaction.
+          </p>
+        </div>
 
-        <p>
-          To become a trusted
-          e-commerce platform that
-          connects customers with the
-          products they love while
-          delivering convenience,
-          value, and satisfaction.
-        </p>
+        <div className="about-section">
+          <h2>Why Choose Us?</h2>
 
-        <br />
+          <ul className="about-list">
+            <li>Wide range of quality products</li>
+            <li>Secure online shopping experience</li>
+            <li>Fast and reliable delivery</li>
+            <li>Easy returns and refunds</li>
+            <li>24/7 customer support</li>
+          </ul>
+        </div>
 
-        <h2>Why Choose Us?</h2>
+        <div className="about-section">
+          <h2>Our Achievements</h2>
 
-        <ul>
-          <li>
-            Wide range of quality
-            products
-          </li>
-          <li>
-            Secure online shopping
-          </li>
-          <li>
-            Fast and reliable delivery
-          </li>
-          <li>
-            Easy returns and refunds
-          </li>
-          <li>
-            24/7 customer support
-          </li>
-        </ul>
+          <div className="features about-stats">
+            <div className="feature-card">
+              <h3>10,000+</h3>
+              <p>Happy Customers</p>
+            </div>
 
-        <br />
+            <div className="feature-card">
+              <h3>500+</h3>
+              <p>Products Available</p>
+            </div>
 
-        <h2>Our Achievements</h2>
-
-        <div className="features">
-          <div className="feature-card">
-            <h3>10,000+</h3>
-            <p>Happy Customers</p>
-          </div>
-
-          <div className="feature-card">
-            <h3>500+</h3>
-            <p>Products Available</p>
-          </div>
-
-          <div className="feature-card">
-            <h3>98%</h3>
-            <p>Customer Satisfaction</p>
+            <div className="feature-card">
+              <h3>98%</h3>
+              <p>Customer Satisfaction</p>
+            </div>
           </div>
         </div>
 
-        <br />
+        <div className="about-section">
+          <h2>Our Commitment</h2>
 
-        <p>
-          Thank you for choosing
-          E-Commerce Store. We are
-          committed to providing the
-          best shopping experience and
-          continuously improving our
-          services for our customers.
-        </p>
+          <p>
+            We continuously strive to improve our services and provide
+            customers with the best shopping experience. Thank you for
+            choosing E-Commerce Store as your preferred online shopping
+            destination.
+          </p>
+        </div>
+
       </div>
     </div>
   );
